@@ -6,6 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+/*
+heroku login
+git init
+git add .
+git commit -m "Initial commit"
+heroku create <app-name>
+git push heroku master
+heroku open
+*/
+
+
 @Controller
 @RequestMapping("/")
 public class EventController {
