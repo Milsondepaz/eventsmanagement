@@ -17,41 +17,39 @@
 <link rel="stylesheet" href="style/style.css"/>
 <head>
     <meta charset="UTF-8">
-    <title>Events and Guest Management</title>
+    <title>Events and Guest Management - Register New Event</title>
 </head>
 <body>
 
 <header>
     <nav>
         <div class="nav-wrapper">
-            <a href="#Index" class ="brand-logo">Events List</a>
+            <a href="#" class="brand-logo">Register New Event</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/registerEvent" class="waves-effect waves-light btn"><i class="material-icons left">playlist_add</i>New Event</a></li>
+                <li><a href="/" class="waves-effect waves-light btn"><i	class="material-icons left">format_list_bulleted</i>Events List</a></li>
             </ul>
         </div>
     </nav>
 </header>
 
-<table class="container">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Local</th>
-        <th>Data</th>
-        <th>Horario</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="event: ${listEvents}">
-        <td><a  th:href="${(#mvc.url('EC#EventDetails').arg(0, event.id)).build()}"> <span th:text="${event.name}"></span> </a></td>
-        <td><span th:text="${event.local}"></span></td>
-        <td><span th:text="${event.data}"></span></td>
-        <td><span th:text="${event.time}"></span></td>
-        <td><a class="waves-effect waves-light" th:href="${(#mvc.url('EC#EventDelete').arg(0, event.id)).build()}"> <i class="material-icons left">delete</i></a></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container formEvent">
+    <form class="container" method="post">
+        <div class="row">
+            Event: <input type="text" value="" name="name"/>
+            <div class="input-field col s6">
+                Local: <input type="text" value="" name="local"/>
+            </div>
+            <div class="input-field col s3">
+                Data: <input type="date" value="" name="data"/>
+            </div>
+            <div class="input-field col s3">
+                Time: <input type="time" value="" name="time"/>
+            </div>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn">Save</button>
+    </form>
+</div>
+
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

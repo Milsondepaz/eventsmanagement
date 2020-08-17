@@ -1,49 +1,47 @@
 package com.eventsmanagement.eventsmanagement.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.List;
 
+
 @Entity
-public class Event implements Serializable {
+public class Event {
 
+    private static final long SerialVersionUID = 1;
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private static final long SeriVersionUID = 1;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    private long code;
-
-    @NotNull
-    @NotEmpty(message="required field")
-    @Size(min=5, max=30, message="length should be min 2 characters")
+    //@NotBlank(message = "Name of Event is mandatory")
+    //@Column(name = "name")
+    //@Size(min=4, max=100, message="ID Number should be in between 4 to 100")
     private String name;
 
-    @NotNull
-    @NotEmpty(message="required field")
-    @Size(min=5, max=30, message="length should be min 2 characters")
+    //@NotBlank(message = "Local cannot be empty")
+    //@Column(name = "local")
+    //@Size(min=4, max=100, message="ID Number should be in between 4 to 100")
     private String local;
 
-    @NotNull
-    @NotEmpty(message="required field")
+    //@NotBlank(message = "Data cannot be empty")
+    //@Column(name = "data")
     private String data;
 
-    @NotNull
-    @NotEmpty(message="required field")
+    //@NotBlank(message = "Time is mandatory")
+    //@Column(name = "time")
     private String time;
 
     @OneToMany
     public List<Guest> guestList;
 
 
-    public long getCode() {
-        return code;
+    public long getId() {
+        return id;
     }
 
-    public void setCode(long code) {
-        this.code = code;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
