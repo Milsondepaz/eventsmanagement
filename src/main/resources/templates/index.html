@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Events and Guest Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css"/>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+    <body>
+
+
+    <!-- First Grid: Logo & About -->
+        <div class="container">
+            <div class="w3-padding-16">
+                <img src="../static/img/ma.png" width="100" th:src="@{img/ma.png}"/>
+            </div>
+            <div class="w3-padding-64">
+                <a href="#" class="w3-button w3-black w3-block w3-hover-blue-grey w3-padding-16">Home</a>
+                <a href="/eventList" class="w3-button w3-black w3-block w3-hover-teal w3-padding-16">Events List</a>
+                <a href="/registerEvent" class="w3-button w3-black w3-block w3-hover-dark-grey w3-padding-16">Add Event</a>
+                <a href="#contact" class="w3-button w3-black w3-block w3-hover-brown w3-padding-16">Go to My Site</a>
+            </div>
+    </div>
+
+        <div class="container align-content-center align-self-baseline">
+            <h3>Made with below technologies</h3>
+            <div class="row align-content-center">
+                        <img src="../static/img/ma.png" width="100" th:src="@{img/ma.png}"/>
+                        <img src="../static/img/ma.png" width="100" th:src="@{img/ma.png}"/>
+                        <img src="../static/img/ma.png" width="100" th:src="@{img/ma.png}"/>
+                        <img src="../static/img/ma.png" width="100" th:src="@{img/ma.png}"/>
+                </div>
+            </div>
+    </div>
+
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </body>
+</html>

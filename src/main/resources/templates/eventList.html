@@ -37,12 +37,12 @@
     </thead>
     <tbody>
     <tr th:each="event: ${listEvents}">
-        <td><a  th:href="${(#mvc.url('EC#EventDetails').arg(0, event.id)).build()}">
+        <td><a  th:href="${(#mvc.url('EC#eventDetails').arg(0, event.id)).build()}">
             <span th:text="${event.name}"></span> </a></td>
         <td><span th:text="${event.local}"></span></td>
         <td><span th:text="${event.data}"></span></td>
         <td><span th:text="${event.time}"></span></td>
-        <td><a class="waves-effect waves-light" th:href="${(#mvc.url('EC#EventDelete').arg(0, event.id)).build()}"> <i class="material-icons left">delete</i></a></td>
+        <td><a class="waves-effect waves-light" th:href="${(#mvc.url('EC#eventDelete').arg(0, event.id)).build()}"> <i class="material-icons left">delete</i></a></td>
     </tr>
     </tbody>
 </table>

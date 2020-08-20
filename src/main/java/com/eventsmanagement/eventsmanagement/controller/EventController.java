@@ -7,12 +7,15 @@ import com.eventsmanagement.eventsmanagement.repository.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.validation.Valid;
 
 /*
@@ -37,12 +40,18 @@ public class EventController {
     private EventRepository eventRepository;
 
     @GetMapping("/")
-    public ModelAndView Text( ) {
-        ModelAndView mv = new ModelAndView("Index");
+    public String home( ) {
+        //ModelAndView mv = new ModelAndView("eventList");
+        //Iterable<Event> listEvents = eventRepository.findAll();
+        //mv.addObject("listEvents", listEvents);
+        return "index";
+    }
+
+    @GetMapping("/eventList")
+    public ModelAndView eventList( ) {
+        ModelAndView mv = new ModelAndView("eventList");
         Iterable<Event> listEvents = eventRepository.findAll();
         mv.addObject("listEvents", listEvents);
-
-
         return mv;
     }
 
@@ -83,21 +92,28 @@ public class EventController {
         return "redirect:"; // redirect for Main page - index - the localhost
     }
 
-
-
-
-
-    /*
-    @PostMapping
-    public String register(@Valid Person person, Errors errors, Model model) {
-        if (errors.hasErrors()) {
-            model.addAttribute("message", "Registration not successful...");
-            return "register";
-        } else {
-            model.addAttribute("message", "Registration sucessfully...");
-            return "register";
-        }
+    @RequestMapping("/deleteGuest")
+    public String deleteGuest(String idNumber) {
+        Guest guest = guestRepository.findByIdNumber(idNumber);
+        guestRepository.delete(guest);
+        Event event = guest.getEvent();
+        long id = event.getId();
+        return "redirect:/"+String.valueOf(id);
     }
-   */
+
+    @PostMapping("/{id}")
+    public String addGuest(@PathVariable("id") long id, @Valid Guest guest, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addAttribute("message ", "Pleace check the fields");
+            return "redirect:/{id}";
+        }
+        Event event = eventRepository.findById(id);
+        guest.setEvent(event);
+        guestRepository.save(guest);
+        attributes.addAttribute("messagem ", "Guest added successfully!");
+        return "redirect:/{id}";
+    }
+
+
 
 }

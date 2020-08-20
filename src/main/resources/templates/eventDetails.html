@@ -28,17 +28,38 @@
     <div th:each="event: ${event}" class="container eventDetails">
         <h5>Event Details</h5>
         <div class="row">
-            <p>Name: <span th:text="${event.name}"></span></p>
-            <p>Local: <span th:text="${event.local}"></span></p>
-            <p>Data: <span th:text="${event.data}"></span></p>
-            <p>Time: <span th:text="${event.time}"></span>
-            </p>
+            <p>Name: <b> <span th:text="${event.name}"></span> </b></p>
+            <p>Local: <b><span th:text="${event.local}"></span></b></p>
+            <p>Data: <b><span th:text="${event.data}"></span></b></p>
+            <p>Time: <b><span th:text="${event.time}"></span></b></p>
         </div>
     </div>
 
+    <div class="container formGuest">
+        <form method="post" th:object="${guest}">
+            Name: <input type="text" value="" name="name" placeholder="Full Name"/>
+            Document Number: <input type="text" value="" name="idNumber" placeholder="AA-00.000.000" class="validate"/>
+            <button type="submit" class="waves-effect waves-light btn">Add</button>
+        </form>
+    </div>
 
-
-
+    <table class="container tableGuest">
+        <thead>
+        <tr>
+            <th>Guest Name</th>
+            <th>ID Nro</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="guest: ${guestList}">
+            <td><span th:text="${guest.name}"></span></td>
+            <td><span th:text="${guest.idNumber}"></span></td>
+            <td><a class="waves-effect waves-light" th:href="${(#mvc.url('EC#deleteGuest').arg(0, guest.idNumber)).build()}">
+                <i class="material-icons left">delete</i></a></td>
+        </tr>
+        </tbody>
+    </table>
 
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
