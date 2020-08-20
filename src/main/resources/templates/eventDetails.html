@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-<link rel="stylesheet" href="style/style.css"/>
 <head>
-    <meta charset="UTF-8">
     <title>Events and Guest Management - Event Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!--Iport Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="styles/style.css"/>
 </head>
+
 <body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Event</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Events List</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div th:each="event: ${event}" class="container eventDetails">
+        <h5>Event Details</h5>
+        <div class="row">
+            <p>Name: <span th:text="${event.name}"></span></p>
+            <p>Local: <span th:text="${event.local}"></span></p>
+            <p>Data: <span th:text="${event.data}"></span></p>
+            <p>Time: <span th:text="${event.time}"></span>
+            </p>
+        </div>
+    </div>
 
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 </html>

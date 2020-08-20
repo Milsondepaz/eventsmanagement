@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-<link rel="stylesheet" href="style/style.css"/>
 <head>
-    <meta charset="UTF-8">
     <title>Events and Guest Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
 
 <header>
     <nav>
         <div class="nav-wrapper">
-            <a href="#Index" class ="brand-logo">Events List</a>
+            <a href="/" class ="brand-logo">Events List</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/registerEvent" class="waves-effect waves-light btn"><i class="material-icons left">playlist_add</i>New Event</a></li>
             </ul>
@@ -38,13 +31,14 @@
         <th>Name</th>
         <th>Local</th>
         <th>Data</th>
-        <th>Horario</th>
+        <th>Time</th>
         <th>Delete</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="event: ${listEvents}">
-        <td><a  th:href="${(#mvc.url('EC#EventDetails').arg(0, event.id)).build()}"> <span th:text="${event.name}"></span> </a></td>
+        <td><a  th:href="${(#mvc.url('EC#EventDetails').arg(0, event.id)).build()}">
+            <span th:text="${event.name}"></span> </a></td>
         <td><span th:text="${event.local}"></span></td>
         <td><span th:text="${event.data}"></span></td>
         <td><span th:text="${event.time}"></span></td>
@@ -53,8 +47,6 @@
     </tbody>
 </table>
 
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 </html>

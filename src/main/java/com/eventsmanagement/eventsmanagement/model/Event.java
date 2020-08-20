@@ -2,6 +2,7 @@ package com.eventsmanagement.eventsmanagement.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -14,22 +15,22 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    //@NotBlank(message = "Name of Event is mandatory")
-    //@Column(name = "name")
-    //@Size(min=4, max=100, message="ID Number should be in between 4 to 100")
+    @NotEmpty(message = "Name of Event is mandatory")
+    @Column(name = "name")
+    @Size(min=4, max=100, message="ID Number should be in between 4 to 100")
     private String name;
 
-    //@NotBlank(message = "Local cannot be empty")
-    //@Column(name = "local")
-    //@Size(min=4, max=100, message="ID Number should be in between 4 to 100")
+    @NotEmpty(message = "Local cannot be empty")
+    @Column(name = "local")
+    @Size(min=4, max=100, message="ID Number should be in between 4 to 100")
     private String local;
 
-    //@NotBlank(message = "Data cannot be empty")
-    //@Column(name = "data")
+    @NotEmpty(message = "Data cannot be empty")
+    @Column(name = "data")
     private String data;
 
-    //@NotBlank(message = "Time is mandatory")
-    //@Column(name = "time")
+    @NotBlank(message = "Time is mandatory")
+    @Column(name = "time")
     private String time;
 
     @OneToMany

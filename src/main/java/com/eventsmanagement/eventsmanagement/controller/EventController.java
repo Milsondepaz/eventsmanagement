@@ -6,16 +6,14 @@ import com.eventsmanagement.eventsmanagement.repository.EventRepository;
 import com.eventsmanagement.eventsmanagement.repository.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.validation.Valid;
-import java.util.List;
 
 /*
 heroku login
@@ -54,31 +52,22 @@ public class EventController {
     }
 
     @PostMapping("/registerEvent")
-    public String registerEventPost(@Valid Event event, BindingResult result, RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            attributes.addAttribute("message ", "Please check the blank fields");
-            System.out.println("Nao salvou");
+    public String registerEventPost(@Valid Event event, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("message ", "Please check the blank fields");
             return "redirect:/registerEvent";
         } else {
             eventRepository.save(event);
-
-            System.out.println(event.getId());
-            System.out.println(event.getName());
-            System.out.println(event.getLocal());
-            System.out.println(event.getData());
-            System.out.println(event.getTime());
-
-
-            attributes.addAttribute("message ", "Saved successfully");
+            model.addAttribute("message ", "Saved successfully");
             return "redirect:";
         }
     }
 
 
-    @RequestMapping("/{codigo}")
-    public ModelAndView EventDetails(@PathVariable("id") long id) {
+    @RequestMapping("/{id}")
+    public ModelAndView eventDetails(@PathVariable("id") long id) {
         Event event = eventRepository.findById(id);
-        ModelAndView mv = new ModelAndView("EventDetais"); //uma view que vai apresentar os detalhes dos eventos
+        ModelAndView mv = new ModelAndView("eventDetails"); //uma view que vai apresentar os detalhes dos eventos
         mv.addObject("event", event);
         Iterable<Guest> guestList = guestRepository.findByEvent(event);
         mv.addObject("guestList", guestList);
@@ -86,7 +75,7 @@ public class EventController {
     }
 
     @RequestMapping("/delete")
-    public String EventDelete(long id) {
+    public String eventDelete(long id) {
         Event event = eventRepository.findById(id);
         if (event.guestList.size() == 0) {
             eventRepository.delete(event);
